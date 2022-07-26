@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "my-app"
+version = "0.1.0"
+description = "My application"
+authors = ["Your Name <you@example.com>"]
+license = "BSD 3-Clause License"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytest = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+flake8-bugbear = "^22.4.25"
+mypy = "^0.961"
+
+[tool.semantic_release]
+version_variable = [
+    "my_app/__init__.py:__version__",
+    "pyproject.toml:version"
+]
+branch = "main"
+upload_to_pypi = false
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
+
+[tool.poetry.scripts]
+my-app = "my_app.main:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
