@@ -44,11 +44,10 @@ RUN poetry build
 # -----
 FROM python:3.9.7-slim-buster
 
-LABEL org.opencontainers.image.source=https://github.com/okp4/template-python
-
+LABEL org.opencontainers.image.source=https://github.com/okp4/data-selector
 COPY --from=builder /build/dist/*.whl /tmp/whl/
 
 RUN  python3 -m pip install --no-cache-dir /tmp/whl/*.whl \
   && rm -rf /tmp/whl
 
-ENTRYPOINT ["my-app"]
+ENTRYPOINT ["data-selector"]
