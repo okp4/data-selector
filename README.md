@@ -123,6 +123,8 @@ Options:
   -f, --force             Overwrite existing files
   -fi, --format_in TEXT   File format of the input (csv, json).  [required]
   -fo, --format_out TEXT  File format of the output (csv, json).
+    -s, --file_sep          File separator (csv).
+
   -S, --select TEXT       Path to file with columns to keep.
   -D, --delete PATH       Path to file with columns to delete.
   -sD, --dataColumn TEXT  Path to file with columns and data to keep.
