@@ -181,7 +181,7 @@ docker build -t data-selector .
 Once built, you can run the container locally with the following command line:
 
 ```sh
-docker run -ti --rm -v <your_path>:/DATA data-selector select_cli  -i DATA/<your_file> -o DATA/<out_name> -f -S <path_to_select_param> -D <path_to_delete_param> -sD <path_to_select_data_param>
+docker run -ti --rm -v <your_path>:/DATA data-selector select_cli  -i DATA/<your_file> -o DATA/<out_name> -f -s <file_sep> -S <path_to_select_param> -D <path_to_delete_param> -sD <path_to_select_data_param>
 ```
 
 -v allows to mount a volume and to use your local data on the docker environment.
@@ -191,6 +191,8 @@ docker run -ti --rm -v <your_path>:/DATA data-selector select_cli  -i DATA/<your
 **your_file**: The name of the file to select data from (in the Directory).
 
 **out_name**: The name you want to give to the output file.
+
+**file_sep**: File separator of the output file.
 
 **path_to_select_param**: Path towards json parametrization file.
 

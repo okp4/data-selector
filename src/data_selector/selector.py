@@ -15,6 +15,7 @@ def select(
     path_columns_to_keep=None,
     path_columns_to_delete=None,
     path_to_data_and_columns=None,
+    file_sep=',',
     data_frame=None
 ) -> None:
     """Documentation:
@@ -32,7 +33,7 @@ def select(
         with open(path_columns_to_keep) as d:
             param_dict = json.load(d)
             list_col_names: list[str] = [value for value in param_dict['column_names'].values()]
-            data_frame = data_frame.reindex(columns=list_col_names)
+            data_frame = select_column(data_frame, list_col_names)
 
     if path_columns_to_delete is not None:
 
@@ -53,7 +54,8 @@ def select(
         output_file,
         overwrite,
         format_choice,
-        input_format
+        input_format,
+        file_sep
     )
 
 
@@ -62,7 +64,8 @@ def save(
     output_file: str,
     overwrite: bool,
     format_choice=None,
-    input_format=None
+    input_format=None,
+    file_sep=','
 ) -> None:
     """Documentation:
         inputs:
@@ -76,7 +79,7 @@ def save(
             format_choice = input_format
 
         if format_choice == "csv":
-            data_frame.to_csv(output_file, index=False, sep=";")
+            data_frame.to_csv(output_file, index=False, sep=file_sep)
             print("File has been saved. End of the service.")
 
         elif format_choice == "json":
@@ -111,8 +114,11 @@ def delete_column(
     returns the new DataFrame.
     """
 
-    df_res: df = data_frame.drop(columns=List_of_columns)
-    return df_res
+    try:
+        df_res: df = data_frame.drop(columns=List_of_columns)
+        return df_res
+    except KeyError as ke:
+        raise KeyError("KeyError : " + str(ke))
 
 
 def select_column(

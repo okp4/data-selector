@@ -59,6 +59,15 @@ def version():
     help="File format of the output (csv, json).",
 )
 @click.option(
+    "-s",
+    "--file_sep",
+    "file_sep",
+    type=str,
+    required=False,
+    default=',',
+    help="File separator (csv).",
+)
+@click.option(
     "-S",
     "--select",
     "path_columns_to_keep",
@@ -91,6 +100,7 @@ def select_cli(
     path_columns_to_keep: str,
     path_columns_to_delete: str,
     path_to_data_and_columns: str,
+    file_sep: str,
     data_frame=None
 ):
     """Start service to select Data to Keep/Delete"""
@@ -103,6 +113,7 @@ def select_cli(
         path_columns_to_keep,
         path_columns_to_delete,
         path_to_data_and_columns,
+        file_sep,
         data_frame
     )
 
