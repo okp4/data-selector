@@ -3,9 +3,9 @@ import pandas as pd
 from pandas import DataFrame as df
 import json
 import os
-from data_selector.cli import cli
-import data_selector.selector as selector
-from __init__ import __version__
+from src.data_selector.cli import cli
+import src.data_selector.selector as selector
+from src.data_selector.__init__ import __version__
 from click.testing import Result, CliRunner
 
 
