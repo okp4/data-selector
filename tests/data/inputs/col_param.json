@@ -1,0 +1,13 @@
+{
+    "column_names":{
+        "1" : "SONG RAW",
+        "2" : "Song Clean",
+        "3" : "ARTIST RAW",
+        "4" : "ARTIST CLEAN",
+        "5" : "CALLSIGN",
+        "6" : "TIME",
+        "7" : "UNIQUE_ID",
+        "8" : "COMBINED",
+        "9" : "First?"
+    }
+}
