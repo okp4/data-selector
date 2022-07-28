@@ -1,6 +1,6 @@
 import click
-import src.data_selector.__init__ as init
-from src.data_selector.selector import select
+import data_selector.__init__ as init
+from data_selector.selector import select
 
 
 @click.group()
