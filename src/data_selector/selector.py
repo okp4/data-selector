@@ -31,18 +31,17 @@ def select(
     print("\nINPUT :\n" + str(len(data_frame)) + " rows")
     print(str(len(data_frame.columns)) + " columns")
     cols_number: int = len(data_frame.columns)
-    rows_number: int = len(data_frame)
 
     if path_columns_to_keep is not None:
 
         with open(path_columns_to_keep) as d:
             param_dict = json.load(d)
-            list_col_names: list[str] = [value for value in param_dict['column_names'].values()]
+            list_col_names = [value for value in param_dict['column_names'].values()]
             data_frame = select_column(data_frame, list_col_names)
             col_size_change: int = len(param_dict['column_names'].keys())
             print("\nOUTPUT :\n" + str(len(data_frame)) + " rows")
             print(str(len(data_frame.columns)) + " columns\n")
-            kpi: str = str((len(data_frame.columns)/(col_size_change))*100)
+            kpi = str((len(data_frame.columns) / (col_size_change)) * 100)
             kpi = str(kpi)[:6]
             print(kpi + " % of data successfully saved.")
 
@@ -50,13 +49,13 @@ def select(
 
         with open(path_columns_to_delete) as d:
             param_dict = json.load(d)
-            list_col_names: list[str] = [value for value in param_dict['column_names'].values()]
+            list_col_names = [value for value in param_dict['column_names'].values()]
             for col_name in list_col_names:
                 data_frame = data_frame.drop(columns=[col_name], axis=1)
-            col_size_change: int = len(param_dict['column_names'].keys())*-1
+            col_size_change = len(param_dict['column_names'].keys()) * (-1)
             print("\nOUTPUT :\n" + str(len(data_frame)) + " rows")
             print(str(len(data_frame.columns)) + " columns\n")
-            kpi: str = str((len(data_frame.columns)/(cols_number + col_size_change))*100)
+            kpi = str((len(data_frame.columns) / (cols_number + col_size_change)) * 100)
             kpi = str(kpi)[:6]
             print(kpi + " % of data successfully saved.")
 
@@ -65,10 +64,10 @@ def select(
         with open(path_to_data_and_columns) as d:
             param_dict = json.load(d)
             data_frame = select_data_and_column(data_frame, param_dict)
-            col_size_change: int = len(param_dict['column_names'].keys())
+            col_size_change = len(param_dict['column_names'].keys())
             print("\nOUTPUT :\n" + str(len(data_frame)) + " rows")
             print(str(len(data_frame.columns)) + " columns\n")
-            kpi: str = str((len(data_frame.columns)/(cols_number + col_size_change))*100)
+            kpi = str((len(data_frame.columns) / (cols_number + col_size_change)) * 100)
             kpi = str(kpi)[:6]
             print(kpi + " % of data successfully saved.")
 
