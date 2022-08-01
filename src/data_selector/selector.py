@@ -2,6 +2,7 @@ import pandas as pd
 from pandas import DataFrame as df
 import os
 import json
+import logging
 import warnings
 warnings.simplefilter("ignore")
 
@@ -29,8 +30,8 @@ def select(
     if data_frame is None:
         data_frame = pd.read_csv(input_file, nrows=nb_rows, engine='python', sep=file_sep)
 
-    print("\nINPUT :\n" + str(len(data_frame)) + " rows")
-    print(str(len(data_frame.columns)) + " columns")
+    if len(data_frame) < nb_rows:
+        logging.warning(str(nb_rows - len(data_frame)) + " rows were lost during file reading.")
     cols_number: int = len(data_frame.columns)
 
     if path_columns_to_keep is not None:
@@ -40,11 +41,9 @@ def select(
             list_col_names = [value for value in param_dict['column_names'].values()]
             data_frame = select_column(data_frame, list_col_names)
             col_size_change: int = len(param_dict['column_names'].keys())
-            print("\nOUTPUT :\n" + str(len(data_frame)) + " rows")
-            print(str(len(data_frame.columns)) + " columns\n")
-            kpi = str((len(data_frame.columns) / (col_size_change)) * 100)
-            kpi = str(kpi)[:6]
-            print(kpi + " % of data successfully saved.")
+            kpi = (len(data_frame.columns) / (col_size_change)) * 100
+            if kpi < 100.0:
+                logging.warning(str(100.0 - kpi)[:6] + "% of the data was lost.")
 
     if path_columns_to_delete is not None:
 
@@ -54,11 +53,9 @@ def select(
             for col_name in list_col_names:
                 data_frame = data_frame.drop(columns=[col_name], axis=1)
             col_size_change = len(param_dict['column_names'].keys()) * (-1)
-            print("\nOUTPUT :\n" + str(len(data_frame)) + " rows")
-            print(str(len(data_frame.columns)) + " columns\n")
-            kpi = str((len(data_frame.columns) / (cols_number + col_size_change)) * 100)
-            kpi = str(kpi)[:6]
-            print(kpi + " % of data successfully saved.")
+            kpi = (len(data_frame.columns) / (cols_number + col_size_change)) * 100
+            if kpi < 100.0:
+                logging.warning(str(100.0 - kpi)[:6] + "% of the data was lost.")
 
     if path_to_data_and_columns is not None:
 
@@ -66,11 +63,9 @@ def select(
             param_dict = json.load(d)
             data_frame = select_data_and_column(data_frame, param_dict)
             col_size_change = len(param_dict['column_names'].keys())
-            print("\nOUTPUT :\n" + str(len(data_frame)) + " rows")
-            print(str(len(data_frame.columns)) + " columns\n")
-            kpi = str((len(data_frame.columns) / (cols_number + col_size_change)) * 100)
-            kpi = str(kpi)[:6]
-            print(kpi + " % of data successfully saved.")
+            kpi = (len(data_frame.columns) / (cols_number + col_size_change)) * 100
+            if kpi < 100.0:
+                logging.warning(str(100.0 - kpi)[:6] + "% of the data was lost.")
 
     save(
         data_frame,
