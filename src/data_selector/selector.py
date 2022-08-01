@@ -30,7 +30,7 @@ def select(
     if data_frame is None:
         data_frame = pd.read_csv(input_file, nrows=nb_rows, engine='python', sep=file_sep)
 
-    if len(data_frame) < nb_rows:
+    if len(data_frame) < nb_rows and (len(data_frame) - nb_rows) > 0:
         logging.warning(str(nb_rows - len(data_frame)) + " rows were lost during file reading.")
     cols_number: int = len(data_frame.columns)
 
@@ -180,7 +180,6 @@ def select_data_and_column(
         for column in param_dict['column_names'].keys():
             for val in param_dict["column_names"][column]['value']:
                 list_inter_value.append(data_frame[data_frame[column] == val])
-                print(val)
             list_inter_column.append(pd.concat(list_inter_value))
             list_inter_value = []
 
