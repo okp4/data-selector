@@ -1,14 +1,13 @@
 [tool.poetry]
 name = "data_selector"
 version = "0.1.0"
-description = "Tool to inject data to OpenSearch"
+description = "Tool to reshape data"
 authors = ["BousseauMarco <opensource@okp4.com>"]
 license = "BSD 3-Clause License"
 
 [tool.poetry.dependencies]
-python = ">=3.8.1, <3.11"
+python = "^3.9"
 pandas = "^1.4.2"
-geopandas = "^0.11.0"
 click = "^8.1.3"
 numpy = "^1.23.0"
 
