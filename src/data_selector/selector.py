@@ -1,3 +1,4 @@
+from typing import Any
 import pandas as pd
 from pandas import DataFrame as df
 import os
@@ -27,11 +28,13 @@ def select(
     This function handles the interaction with the
     user for the choices.
     """
+
     if data_frame is None:
         data_frame = pd.read_csv(input_file, nrows=nb_rows, engine='python', sep=file_sep)
 
     if len(data_frame) < nb_rows and (len(data_frame) - nb_rows) > 0:
-        logging.warning(str(nb_rows - len(data_frame)) + " rows were lost during file reading.")
+        logging.warning(str(nb_rows - len(data_frame))
+                        + " rows were lost during file reading.")
     cols_number: int = len(data_frame.columns)
 
     if path_columns_to_keep is not None:
@@ -43,7 +46,10 @@ def select(
             col_size_change: int = len(param_dict['column_names'].keys())
             kpi = (len(data_frame.columns) / (col_size_change)) * 100
             if kpi < 100.0:
-                logging.warning(str(100.0 - kpi)[:6] + "% of the data was lost.")
+                logging.warning(str(100.0 - kpi)[:6]
+                                + "% of the data was lost. Ignore "
+                                + "this warnings if you have "
+                                + "truncated the dataset.")
 
     if path_columns_to_delete is not None:
 
@@ -174,14 +180,19 @@ def select_data_and_column(
 
     data_frame = data_frame.reindex(columns=param_dict["column_names"].keys())
     try:
-        df_res: df = pd.DataFrame()
-        list_inter_value = []
-        list_inter_column = []
+        list_of_delt_values: list[Any] = []
+        df_res: pd.DataFrame = pd.DataFrame()
+        list_inter_value: list[Any] = []
+        list_inter_column: list[Any] = []
+
         for column in param_dict['column_names'].keys():
-            for val in param_dict["column_names"][column]['value']:
-                list_inter_value.append(data_frame[data_frame[column] == val])
-            list_inter_column.append(pd.concat(list_inter_value))
-            list_inter_value = []
+            for val in param_dict['column_names'][column]['value']:
+                if val not in list_of_delt_values:
+                    list_inter_value.append(data_frame[data_frame[column] == val])
+                    list_of_delt_values.append(val)
+            list_of_delt_values = []
+        list_inter_column.append(pd.concat(list_inter_value).drop_duplicates())
+        list_inter_value = []
 
         df_res = pd.concat(list_inter_column)
         return df_res

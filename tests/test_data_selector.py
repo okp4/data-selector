@@ -60,7 +60,7 @@ def test_select_data_and_column():
     # assert
     assert str(list_of_names) != str(data_frame.columns.to_list())
     assert data_frame.columns.to_list() == ['SONG_RAW', 'Song_Clean', 'First?', 'temp_test']
-    assert number_of_rows_control <= len(data_frame.index)
+    assert number_of_rows_control >= len(data_frame.index)
 
 
 def test_version_displays_library_version():
