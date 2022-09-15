@@ -175,7 +175,7 @@ docker build -t data-selector .
 Once built, you can run the container locally with the following command line:
 
 ```sh
-docker run -ti --rm -v <your_path>:/DATA data-selector select-cli  -i DATA/<path_to_data> -out DATA/<out_name> -s <file_sep> -keep DATA/<path_to_select_columns> -delete DATA/<path_to_delete_columns> -values DATA/<path_to_select_data_columns>
+docker run -ti --rm -v <your_path>:/DATA data-selector -i DATA/<path_to_data> -out DATA/<out_name> -s <file_sep> -keep DATA/<path_to_select_columns> -delete DATA/<path_to_delete_columns> -values DATA/<path_to_select_data_columns>
 ```
 
 -v allows to mount a volume and to use your local data on the docker environment.
