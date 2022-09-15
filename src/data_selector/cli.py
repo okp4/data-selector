@@ -1,6 +1,6 @@
 import click
 import data_selector.__init__ as init
-from data_selector.selector import select
+from data_selector.selector import select_data
 
 
 @click.group()
@@ -22,15 +22,15 @@ def version():
     "input_file",
     type=click.Path(dir_okay=False, file_okay=True, exists=True, readable=True),
     required=True,
-    help="Data file to convert"
+    help="Data file to convert",
 )
 @click.option(
-    "-o",
+    "-out",
     "--output",
-    "output_file",
+    "out_file",
     type=str,
-    default="test",
-    help="Name for the output files"
+    required=True,
+    help="name for the output files",
 )
 @click.option(
     "-f",
@@ -39,24 +39,7 @@ def version():
     type=bool,
     is_flag=True,
     default=False,
-    help="Overwrite existing files"
-)
-@click.option(
-    "-fi",
-    "--format_in",
-    "file_format_in",
-    type=str,
-    required=True,
-    help="File format of the input (csv, json).",
-)
-@click.option(
-    "-fo",
-    "--format_out",
-    "file_format_out",
-    type=str,
-    required=False,
-    default='csv',
-    help="File format of the output (csv, json).",
+    help="Overwrite existing files",
 )
 @click.option(
     "-s",
@@ -64,68 +47,61 @@ def version():
     "file_sep",
     type=str,
     required=False,
-    default=',',
+    default=",",
     help="File separator (csv).",
 )
 @click.option(
-    "-r",
-    "--nbOfRows",
+    "-row",
+    "--nb_rows",
     "nb_rows",
     type=int,
     required=False,
-    default=10,
     help="Number of rows to import from input_file.",
 )
 @click.option(
-    "-S",
-    "--select",
+    "-keep",
+    "--columns_to_keep",
     "path_columns_to_keep",
-    type=str,
+    type=click.Path(dir_okay=False, file_okay=True, exists=True, readable=True),
     required=False,
-    help="Path to file with columns to keep."
+    help="Path to file with columns to keep.",
 )
 @click.option(
-    "-D",
-    "--delete",
+    "-delete",
+    "--columns_to_delete",
     "path_columns_to_delete",
-    type=click.Path(),
+    type=click.Path(dir_okay=False, file_okay=True, exists=True, readable=True),
     required=False,
-    help="Path to file with columns to delete."
+    help="Path to file with columns to delete.",
 )
 @click.option(
-    "-sD",
-    "--dataColumn",
-    "path_to_data_and_columns",
-    type=str,
+    "-values",
+    "--values_to_keep",
+    "path_to_values_to_keep",
+    type=click.Path(dir_okay=False, file_okay=True, exists=True, readable=True),
     default=None,
-    help="Path to file with columns and data to keep."
+    help="Path to file with columns and data to keep.",
 )
-def select_cli(
+def selector(
     input_file: str,
-    output_file: str,
+    out_file: str,
     overwrite: bool,
-    file_format_in: str,
-    file_format_out: str,
-    path_columns_to_keep: str,
-    path_columns_to_delete: str,
-    path_to_data_and_columns: str,
     file_sep: str,
     nb_rows: int,
-    data_frame=None
+    path_columns_to_keep: str,
+    path_columns_to_delete: str,
+    path_to_values_to_keep: str,
 ):
     """Start service to select Data to Keep/Delete"""
-    select(
+    select_data(
         input_file,
-        output_file,
+        out_file,
         overwrite,
-        file_format_in,
-        file_format_out,
+        file_sep,
         nb_rows,
         path_columns_to_keep,
         path_columns_to_delete,
-        path_to_data_and_columns,
-        file_sep,
-        data_frame=data_frame
+        path_to_values_to_keep,
     )
 
 
