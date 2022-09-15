@@ -57,7 +57,7 @@ def select_data(
     input_file: str,
     out_file: str,
     overwrite: bool,
-    file_sep:str,
+    file_sep: str,
     nb_rows=None,
     path_columns_to_keep=None,
     path_columns_to_delete=None,
