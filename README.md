@@ -2,6 +2,9 @@
 
 > Service to truncate data files [@okp4](okp4.com).
 
+It allows you to select a sample of the dataset, specifying a number of rows. It is possible to delete or keep columns. Another parameter will allow the selection of data in a column according to its value(s).
+The output result is saved in a .csv file.
+
 [![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 ## Purpose
@@ -26,7 +29,7 @@ The repository targets python `3.9` and higher.
 The repository uses [Poetry](https://python-poetry.org) as python packaging and dependency management. Be sure to have it properly installed before.
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 ### Docker
@@ -98,77 +101,67 @@ poetry run pytest -v
 The usage is given as follows:
 
 ```sh
-Usage: cli.py [OPTIONS] COMMAND [ARGS]...
+Usage: data-selector [OPTIONS] COMMAND [ARGS]...
 
-  Data selection tool.
+  Data selection interactive tool.
 
 Options:
   --help  Show this message and exit.
 
 Commands:
-  select-cli  Start service to select Data to Keep/Delete
-  version     Print the application version information
+  selector  Start service to select Data to Keep/Delete
+  version   Print the application version information
 ```
 
 To use the command to select data in file:
 
 ```sh
-Usage: cli.py select-cli [OPTIONS]
+Usage: data-selector selector [OPTIONS]
 
   Start service to select Data to Keep/Delete
 
 Options:
-  -i, --input FILE        Data file to convert  [required]
-  -o, --output TEXT       Name for the output files
-  -f, --force             Overwrite existing files
-  -fi, --format_in TEXT   File format of the input (csv, json).  [required]
-  -fo, --format_out TEXT  File format of the output (csv, json).
-  -s, --file_sep          File separator (csv).
-  -S, --select TEXT       Path to file with columns to keep.
-  -D, --delete PATH       Path to file with columns to delete.
-  -sD, --dataColumn TEXT  Path to file with columns and data to keep.
-  --help                  Show this message and exit.
+  -i, --input FILE                Data file to convert  [required]
+  -out, --output TEXT             name for the output files  [required]
+  -f, --force                     Overwrite existing files
+  -s, --file_sep TEXT             File separator (csv).
+  -row, --nb_rows INTEGER         Number of rows to import from input_file.
+  -keep, --columns_to_keep FILE   Path to file with columns to keep.
+  -delete, --columns_to_delete FILE
+                                  Path to file with columns to delete.
+  -values, --values_to_keep FILE  Path to file with columns and data to keep.
+  --help                          Show this message and exit.
 ```
 
 ### Specification for json parameter files
 
-For the -S and the -D option, the template is given below :
+For the -keep and the -delete option, the template is given below :
 
 ```json
-{
-    "column_names":{
-        "1" : "<column#1>",
-        "2" : "<column#2>",
-        "3" : "<column#3>",
-        "4" : "<column#4>",
-        "5" : "<column#5>",
-    }
-}
+[
+"<column#1>",
+"<column#2>",
+"<column#3>",
+"<column#4>",
+"<column#5>"
+]
 ```
 
 **column#x** are the columns you want to select/delete.
 **Note that you can add as many columns as needed.**
 
-For the -sD option, the template is given below :
+For the -values option, the template is given below :
 
 ```json
-{
-    "column_names":{
-        "<column#1>": {
-                "value": ["<value#1>", "<value#2"]
-                },
-        "<column#2>": {
-                "value": ["<value#1>", "<value#2", "<value#3", "<value#4"]
-                },
-        "<column#3>": {
-                "value": ["<value#1>"]
-                }
-    }
+{  
+  "<column#1>":["<value#1>", "<value#2"],    
+  "<column#2>":["<value#1>", "<value#2", "<value#3", "<value#4"],  
+  "<column#3>":["<value#1>"]   
 }
 ```
 
 **column#x** are the columns you want to select/delete.
-**value** is a list of the values you want to keep.
+**value** is a list of the values you want to keep on this column.
 **Note that you can add as many columns as needed.**
 
 ### Build & run docker image (locally)
@@ -182,24 +175,24 @@ docker build -t data-selector .
 Once built, you can run the container locally with the following command line:
 
 ```sh
-docker run -ti --rm -v <your_path>:/DATA data-selector select-cli  -i DATA/<your_file> -o DATA/<out_name> -fi <input_format> -fo <output_format> -f -s <file_sep> -S <path_to_select_param> -D <path_to_delete_param> -sD DATA/<path_to_select_data_param>
+docker run -ti --rm -v <your_path>:/DATA data-selector select-cli  -i DATA/<path_to_data> -out DATA/<out_name> -s <file_sep> -keep DATA/<path_to_select_columns> -delete DATA/<path_to_delete_columns> -values DATA/<path_to_select_data_columns>
 ```
 
 -v allows to mount a volume and to use your local data on the docker environment.
 
-**your_path**: Directory where the data to be converted is stored locally.
+**your_path**: Local directory where the data (data to be selected, and parameter json files) are stored
 
-**your_file**: The name of the file to select data from (in the Directory).
+**path_to_data**: The name of the file to select data from (in the Directory).
 
 **out_name**: The name you want to give to the output file.
 
-**file_sep**: File separator of the output file.
+**file_sep**: File separator of the input file.
 
-**path_to_select_param**: Path towards json parametrization file.
+**path_to_select_columns**: Path towards json parametrization file.
 
-**path_to_delete_param**: Path towards json parametrization file.
+**path_to_delete_columns**: Path towards json parametrization file.
 
-**path_to_select_data_param**: Path towards json parametrization file.
+**path_to_select_data_columns**: Path towards json parametrization file.
 
 ## Contributing
 
