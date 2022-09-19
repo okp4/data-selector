@@ -2,7 +2,7 @@
 name = "data_selector"
 version = "0.1.0"
 description = "Tool to reshape data"
-authors = ["BousseauMarco <opensource@okp4.com>"]
+authors = ["OKP4 <opensource@okp4.com>"]
 license = "BSD 3-Clause License"
 
 [tool.poetry.dependencies]
