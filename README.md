@@ -1,6 +1,6 @@
-# Data Selector Project
+# Data Selector
 
-> Service to truncate data files [@okp4](okp4.com).
+> Tool to truncate data files [@okp4](okp4.com).
 
 It allows you to select a sample of the dataset, specifying a number of rows. It is possible to delete or keep columns. Another parameter will allow the selection of data in a column according to its value(s).
 The output result is saved in a .csv file.
@@ -9,7 +9,7 @@ The output result is saved in a .csv file.
 
 ## Purpose
 
-This repository contains a service to truncate data files with a consistent set of standards across all okp4 python projects. We are convinced that the quality of the code depends on clear and consistent coding conventions, with an automated enforcement (CI).
+This repository contains a tool to truncate data files with a consistent set of standards across all okp4 python projects. We are convinced that the quality of the code depends on clear and consistent coding conventions, with an automated enforcement (CI).
 
 This way, the template promotes:
 
@@ -109,7 +109,7 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  selector  Start service to select Data to Keep/Delete
+  selector  Tool to select Data to Keep/Delete
   version   Print the application version information
 ```
 
@@ -118,7 +118,7 @@ To use the command to select data in file:
 ```sh
 Usage: data-selector selector [OPTIONS]
 
-  Start service to select Data to Keep/Delete
+  Tool to select Data to Keep/Delete
 
 Options:
   -i, --input FILE                Data file to convert  [required]
@@ -175,7 +175,7 @@ docker build -t data-selector .
 Once built, you can run the container locally with the following command line:
 
 ```sh
-docker run -ti --rm -v <your_path>:/DATA data-selector -i DATA/<path_to_data> -out DATA/<out_name> -s <file_sep> -keep DATA/<path_to_select_columns> -delete DATA/<path_to_delete_columns> -values DATA/<path_to_select_data_columns>
+docker run -ti --rm -v <your_path>:/DATA data-selector selector -i DATA/<path_to_data> -out DATA/<out_name> -s <file_sep> -keep DATA/<path_to_select_columns> -delete DATA/<path_to_delete_columns> -values DATA/<path_to_select_data_columns>
 ```
 
 -v allows to mount a volume and to use your local data on the docker environment.

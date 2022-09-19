@@ -92,7 +92,7 @@ def selector(
     path_columns_to_delete: str,
     path_to_values_to_keep: str,
 ):
-    """Start service to select Data to Keep/Delete"""
+    """Tool to select Data to Keep/Delete"""
     select_data(
         input_file,
         out_file,
