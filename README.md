@@ -4,6 +4,7 @@
 
 [![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Lint](https://github.com/okp4/data-selector/actions/workflows/lint.yml/badge.svg)](https://github.com/okp4/data-selector/actions/workflows/lint.yml)
+[![Build](https://github.com/okp4/data-selector/actions/workflows/build.yml/badge.svg)](https://github.com/okp4/data-selector/actions/workflows/build.yml)
 
 ## Purpose
 
