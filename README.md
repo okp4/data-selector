@@ -3,6 +3,7 @@
 > Tool to select or filter data of different types and in multiple dimensions.
 
 [![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Lint](https://github.com/okp4/data-selector/actions/workflows/lint.yml/badge.svg)](https://github.com/okp4/data-selector/actions/workflows/lint.yml)
 
 ## Purpose
 
