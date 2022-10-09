@@ -1,100 +1,14 @@
 # Data Selector
 
-> Tool to truncate data files [@okp4](okp4.com).
-
-It allows you to select a sample of the dataset, specifying a number of rows. It is possible to delete or keep columns. Another parameter will allow the selection of data in a column according to its value(s).
-The output result is saved in a .csv file.
+> Tool to select or filter data of different types and in multiple dimensions.
 
 [![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 ## Purpose
 
-This repository contains a tool to truncate data files with a consistent set of standards across all okp4 python projects. We are convinced that the quality of the code depends on clear and consistent coding conventions, with an automated enforcement (CI).
+The `Data Selector` tools allows you to select a sample of the dataset, specifying a number of rows. It is possible to delete or keep columns. Another parameter will allow the selection of data in a column according to its value(s).
 
-This way, the template promotes:
-
-- the use of [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), [semantic versionning](https://semver.org/) and [semantic releasing](https://github.com/cycjimmy/semantic-release-action) which automates the whole package release workflow including: determining the next version number, generating the release notes, and publishing the artifacts (project tarball, docker images, etc.)
-- a uniform way for managing the project lifecycle (depencencies management, building, testing)
-- KISS principles: simple for developers
-- a consistent coding style
-
-## System requirements
-
-### Python
-
-The repository targets python `3.9` and higher.
-
-### Poetry
-
-The repository uses [Poetry](https://python-poetry.org) as python packaging and dependency management. Be sure to have it properly installed before.
-
-```sh
-curl -sSL https://install.python-poetry.org | python3 -
-```
-
-### Docker
-
-You can follow the link below on how to install and configure **Docker** on your local machine:
-
-- [Docker Install Documentation](https://docs.docker.com/install/)
-
-## What's included
-
-This project uses the following:
-
-- [poetry](https://python-poetry.org) for dependency management.
-- [flake8](https://flake8.pycqa.org) for linting python code.
-- [mypy](http://mypy-lang.org/) for static type checks.
-- [pytest](https://docs.pytest.org) for unit testing.
-
-The project is also configured to enforce code quality by declaring some CI workflows:
-
-- conventional commits
-- lint
-- unit test
-- semantic release
-
-## Build
-
-Project is built by [poetry](https://python-poetry.org).
-
-```sh
-poetry install
-```
-
-## Lint
-
-### Python linting
-
-> ⚠️ Be sure to write code compliant with linters or else you'll be rejected by the CI.
-**Code linting** is performed by [flake8](https://flake8.pycqa.org).
-
-```sh
-poetry run flake8 --count --show-source --statistics
-```
-
-**Static type check** is performed by [mypy](http://mypy-lang.org/).
-
-```sh
-poetry run mypy .
-```
-
-### Markdown linting
-
-**Markdown linting** is performed by [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli)
-
-```sh
-markdownlint "**/*.md"  
-```
-
-## Unit Test
-
-> ⚠️ Be sure to write tests that succeed or else you'll be rejected by the CI.
-Unit tests are performed by the [pytest](https://docs.pytest.org) testing framework.
-
-```sh
-poetry run pytest -v
-```
+The output result is saved in a `.csv` file.
 
 ## Usage
 
@@ -135,7 +49,7 @@ Options:
 
 ### Specification for json parameter files
 
-For the -keep and the -delete option, the template is given below :
+For the -keep and the `-delete` option, the template is given below :
 
 ```json
 [
@@ -150,7 +64,7 @@ For the -keep and the -delete option, the template is given below :
 **column#x** are the columns you want to select/delete.
 **Note that you can add as many columns as needed.**
 
-For the -values option, the template is given below :
+For the `values` option, the template is given below :
 
 ```json
 {  
@@ -193,6 +107,40 @@ docker run -ti --rm -v <your_path>:/DATA data-selector selector -i DATA/<path_to
 **path_to_delete_columns**: Path towards json parametrization file.
 
 **path_to_select_data_columns**: Path towards json parametrization file.
+
+## Build
+
+Project is built by [poetry](https://python-poetry.org).
+
+```sh
+poetry install
+```
+
+## Lint
+
+### Python linting
+
+> ⚠️ Be sure to write code compliant with linters or else you'll be rejected by the CI.
+**Code linting** is performed by [flake8](https://flake8.pycqa.org).
+
+```sh
+poetry run flake8 --count --show-source --statistics
+```
+
+**Static type check** is performed by [mypy](http://mypy-lang.org/).
+
+```sh
+poetry run mypy .
+```
+
+## Unit Test
+
+> ⚠️ Be sure to write tests that succeed or else you'll be rejected by the CI.
+Unit tests are performed by the [pytest](https://docs.pytest.org) testing framework.
+
+```sh
+poetry run pytest -v
+```
 
 ## Contributing
 
