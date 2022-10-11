@@ -2,14 +2,18 @@
 
 > Tool to select or filter data of different types and in multiple dimensions.
 
-[![lint](https://github.com/okp4/data-selector/actions/workflows/lint.yml/badge.svg)](https://github.com/okp4/data-selector/actions/workflows/lint.yml)
-[![build](https://github.com/okp4/data-selector/actions/workflows/build.yml/badge.svg)](https://github.com/okp4/data-selector/actions/workflows/build.yml)
-[![test](https://github.com/okp4/data-selector/actions/workflows/test.yml/badge.svg)](https://github.com/okp4/data-selector/actions/workflows/test.yml)
-[![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![version](https://img.shields.io/github/v/release/okp4/data-selector?style=for-the-badge&logo=github)](https://github.com/okp4/data-selector/releases)
+[![lint](https://img.shields.io/github/workflow/status/okp4/data-selector/Lint?label=lint&style=for-the-badge&logo=github)](https://github.com/okp4/data-selector/actions/workflows/lint.yml)
+[![build](https://img.shields.io/github/workflow/status/okp4/data-selector/Build?label=build&style=for-the-badge&logo=github)](https://github.com/okp4/data-selector/actions/workflows/build.yml)
+[![test](https://img.shields.io/github/workflow/status/okp4/data-selector/Test?label=test&style=for-the-badge&logo=github)](https://github.com/okp4/data-selector/actions/workflows/test.yml)
+[![codecov](https://img.shields.io/codecov/c/github/okp4/data-selector?style=for-the-badge&logo=codecov)](https://codecov.io/gh/okp4/data-selector)
+[![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge&logo=conventionalcommits)](https://conventionalcommits.org)
+[![contributor covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?style=for-the-badge)](https://github.com/okp4/.github/blob/main/CODE_OF_CONDUCT.md)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg?style=for-the-badge)](https://opensource.org/licenses/BSD-3-Clause)
 
 ## Purpose
 
-The `Data Selector` tools allows you to select a sample of the dataset, specifying a number of rows. It is possible to delete or keep columns. Another parameter will allow the selection of data in a column according to its value(s).
+The `Data Selector` tool allows you to select a sample of the dataset, specifying a number of rows. It is possible to delete or keep columns. Another parameter allows the selection of data in a column according to its value(s).
 
 The output result is saved in a `.csv` file.
 
@@ -145,6 +149,9 @@ Unit tests are performed by the [pytest](https://docs.pytest.org) testing framew
 poetry run pytest -v
 ```
 
-## Contributing
+## You want to get involved? 😍
 
-So you want to contribute? Great. We appreciate any help you're willing to give. Don't hesitate to open issues and/or submit pull requests.
+Please check out OKP4 health files :
+
+- [Contributing](https://github.com/okp4/.github/blob/main/CONTRIBUTING.md)
+- [Code of conduct](https://github.com/okp4/.github/blob/main/CODE_OF_CONDUCT.md)
