@@ -13,7 +13,7 @@
 
 ## Purpose
 
-The `Data Selector` tools allows you to select a sample of the dataset, specifying a number of rows. It is possible to delete or keep columns. Another parameter will allow the selection of data in a column according to its value(s).
+The `Data Selector` tool allows you to select a sample of the dataset, specifying a number of rows. It is possible to delete or keep columns. Another parameter allows the selection of data in a column according to its value(s).
 
 The output result is saved in a `.csv` file.
 
@@ -149,8 +149,9 @@ Unit tests are performed by the [pytest](https://docs.pytest.org) testing framew
 poetry run pytest -v
 ```
 
-## Contributing
+## You want to get involved? 😍
 
-So you want to contribute? Great. We appreciate any help you're willing to give. Don't hesitate to open issues and/or submit pull requests.
+Please check out OKP4 health files :
 
-Remember that this is the template we use at [OKP4](okp4.com/), and that we apply everywhere in our private and public Python projects. This is why we may have to refuse change requests simply because they do not comply with our internal requirements, and not because they are not relevant.
+- [Contributing](https://github.com/okp4/.github/blob/main/CONTRIBUTING.md)
+- [Code of conduct](https://github.com/okp4/.github/blob/main/CODE_OF_CONDUCT.md)
