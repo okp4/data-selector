@@ -168,7 +168,7 @@ dev = ["coverage", "hypothesis", "hypothesmith (>=0.2)", "pre-commit", "tox"]
 
 [[package]]
 name = "geopandas"
-version = "0.12.1"
+version = "0.12.2"
 description = "Geographic pandas extensions"
 category = "main"
 optional = false
@@ -454,7 +454,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "7f90c47dafa252744e51637def64054376195b0b68e4144806c9552c01092e57"
+content-hash = "3676f7838dd8a2ebe6cca0a25ebd8a88cf43115f24820bf0f1e737ee38787655"
 
 [metadata.files]
 attrs = [
@@ -573,8 +573,8 @@ flake8-bugbear = [
     {file = "flake8_bugbear-22.12.6-py3-none-any.whl", hash = "sha256:b69a510634f8a9c298dfda2b18a8036455e6b19ecac4fe582e4d7a0abfa50a30"},
 ]
 geopandas = [
-    {file = "geopandas-0.12.1-py3-none-any.whl", hash = "sha256:0cf7f59a7b962bdbee09c1848b1715d1c445d5d27302f219f7f88b4484adef1c"},
-    {file = "geopandas-0.12.1.tar.gz", hash = "sha256:917655f25ee3022809114d833d45969d38afe9f7e5ff2a3b875a85f9bf686819"},
+    {file = "geopandas-0.12.2-py3-none-any.whl", hash = "sha256:0a470e4bf6f5367e6fd83ab6b40405e0b805c8174665bbcb7c4077ed90202912"},
+    {file = "geopandas-0.12.2.tar.gz", hash = "sha256:0acdacddefa176525e4da6d9aeeece225da26055c4becdc6e97cf40fa97c27f4"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
