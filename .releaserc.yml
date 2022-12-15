@@ -20,12 +20,12 @@ plugins:
               hasChanged: true
               numMatches: 1
               numReplacements: 1
-        - files: [ my_app/__init__.py ]
+        - files: [ src/data_selector/__init__.py ]
           from: ^__version__ = '.+'
           to: __version__ = '${nextRelease.version}'
           countMatches: true
           results:
-            - file: my_app/__init__.py
+            - file: src/data_selector/__init__.py
               hasChanged: true
               numMatches: 1
               numReplacements: 1
@@ -34,6 +34,6 @@ plugins:
     - assets:
         - CHANGELOG.md
         - LICENSE
-        - my_app/__init__.py
+        - src/data_selector/__init__.py
         - pyproject.toml
       message: "chore(release): perform release ${nextRelease.version}"
