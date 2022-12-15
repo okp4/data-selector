@@ -21,7 +21,7 @@ plugins:
               numMatches: 1
               numReplacements: 1
         - files: [ src/data_selector/__init__.py ]
-          from: ^__version__ = ".+""
+          from: ^__version__ = ".+"
           to: __version__ = "${nextRelease.version}"
           countMatches: true
           results:
